@@ -1,9 +1,8 @@
 import express from 'express'
 import { pool } from './db.js'
+import { PORT } from './config.js'
 
 const app = express()
-
-app.listen(3000)
 
 app.get('/', async (req, res) => {
   const [rows] = await pool.query('SELECT * FROM users')
@@ -21,4 +20,5 @@ app.get('/create', async (req, res) => {
   res.json(result)
 })
 
+app.listen(PORT)
 console.log('Server on port 3000')
